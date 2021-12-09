@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoLNGRIDConverter {
+namespace LoLNGRIDConverter_Editer {
     public struct Color {
         public int r;
         public int g;

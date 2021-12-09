@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoLNGRIDConverter {
+namespace LoLNGRIDConverter_Editer
+{
     public struct Vector3 {
         public float x;
         public float y;

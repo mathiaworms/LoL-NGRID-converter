@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0720788C-DB73-4BD0-98C0-A8D2B6E15596}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LoLNGRIDConverter</RootNamespace>
-    <AssemblyName>LoLNGRIDConverter</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>LoLNGRIDConverter_Editer</RootNamespace>
+    <AssemblyName>LoLNGRIDConverter_Editer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,7 +46,9 @@
   <ItemGroup>
     <Compile Include="Color.cs" />
     <Compile Include="NavGridCell.cs" />
+    <Compile Include="NavGridEditing.cs" />
     <Compile Include="NGridFileReader.cs" />
+    <Compile Include="NGridFileWriter.cs" />
     <Compile Include="Vector3.cs" />
     <Compile Include="FileWrapper.cs" />
     <Compile Include="Program.cs" />

@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoLNGRIDConverter {
-    public class NavGridCell {
+namespace LoLNGRIDConverter_Editer
+{
+    public class NavGridCell
+    {
+
         public int index;
         public VisionPathingFlags visionPathingFlags;
         public RiverRegionFlags riverRegionFlags;
@@ -16,18 +19,33 @@ namespace LoLNGRIDConverter {
         public RingFlags ringFlags;
         public UnknownSRXFlags srxFlags;
 
+        public float centerHeight;
+        public int sessionID;
+        public float arrivalCost;
+        public bool isOpen;
+        public float Heuristic;
+
         public int x;
         public int z;
 
         public bool hasOverride;
 
+        public int actorList;
+        public int goodCellSessionID;
+        public float hintHeight;
+        public short arrivalDirection;
+        public short hintNode1;
+        public short hintNode2;
 
-        public NavGridCell() {
+
+        public NavGridCell()
+        {
 
         }
     }
 
-    public enum VisionPathingFlags {  // 16 bits, bitfield
+    public enum VisionPathingFlags // 16 bits, bitfield
+    {
         KnownFlags = Walkable | Brush | Wall | StructureWall | TransparentWall | Unknown128 | AlwaysVisible | BlueTeamOnly | RedTeamOnly | NeutralZoneVisiblity,
 
         Walkable = 0,
@@ -50,7 +68,8 @@ namespace LoLNGRIDConverter {
         NeutralZoneVisiblity = 4096,  // no bits observed past this point
     }
 
-    public enum RiverRegionFlags {  // 8 bits, bitfield (equality for original Nexus Blitz)
+    public enum RiverRegionFlags // 8 bits, bitfield (equality for original Nexus Blitz)
+    {
         KnownFlags = NonJungle | JungleQuadrant | BaronPit | River | RiverEntrance,
 
         NonJungle = 0,
@@ -65,7 +84,8 @@ namespace LoLNGRIDConverter {
         RiverEntrance = 64,  // no bits observed past this point
     }
 
-    public enum JungleQuadrantFlags {  // 4 bits, equality
+    public enum JungleQuadrantFlags // 4 bits, equality
+    {
         LastKnownFlag = SouthJungleQuadrant,
 
         None = 0,
@@ -78,7 +98,8 @@ namespace LoLNGRIDConverter {
         Unobserved8 = 8,
     }
 
-    public enum MainRegionFlags {  // 4 bits, equality
+    public enum MainRegionFlags // 4 bits, equality
+    {
         LastKnownFlag = BotSideLaneAlcove,
 
         Spawn = 0,
@@ -101,7 +122,8 @@ namespace LoLNGRIDConverter {
         BotSideLaneAlcove = 12,
     }
 
-    public enum NearestLaneFlags {  // 4 bits, equality
+    public enum NearestLaneFlags // 4 bits, equality
+    {
         LastKnownFlag = RedSideBotNeutralZone,
 
         BlueSideTopLane = 0,
@@ -121,14 +143,16 @@ namespace LoLNGRIDConverter {
         RedSideBotNeutralZone = 11,
     }
 
-    public enum POIFlags {  // 4 bits, equality
+    public enum POIFlags // 4 bits, equality
+    {
         LastKnownFlag = CampMurkWolves,
 
         None = 0,
 
         NearTurret = 1,
         CloudDrakeWindTunnel = 2,
-        BaseGates = 2,  // note:  as of preseason 10, this flag now corresponds to cloud drake wind tunnels, and all following flags are removed
+        // note:  as of preseason 10, this flag now corresponds to cloud drake wind tunnels, and all following flags are removed
+        BaseGates = 2,
 
         BaronPit = 3,
         DragonPit = 4,
@@ -141,7 +165,8 @@ namespace LoLNGRIDConverter {
         CampMurkWolves = 10,
     }
 
-    public enum RingFlags {  // 4 bits, equality
+    public enum RingFlags // 4 bits, equality
+    {
         LastKnownFlag = RedOuterToNeutral,
 
         BlueSpawnToNexus = 0,
@@ -157,7 +182,8 @@ namespace LoLNGRIDConverter {
         RedOuterToNeutral = 9,
     }
 
-    public enum UnknownSRXFlags {  // 4 bits, equality?
+    public enum UnknownSRXFlags // 4 bits, equality?
+    {
         LastKnownFlag = BrushWall,
 
         Walkable = 0,

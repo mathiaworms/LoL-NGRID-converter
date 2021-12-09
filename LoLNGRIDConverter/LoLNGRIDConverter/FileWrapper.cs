@@ -5,18 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace LoLNGRIDConverter {
+namespace LoLNGRIDConverter_Editer {
     public class FileWrapper {
-
-        private const int bufferSize = 8;
-
-        public string folderPath { get; private set; }
-        public string name { get; private set; }
-        public string fileExtension { get; private set; }
 
         private FileStream fileStream;
         private byte[] readBuffer;
+        private const int bufferSize = 8;
+        private string name;
 
+        public string folderPath { get; private set; }
+        public string fileExtension { get; private set; }
 
         public FileWrapper(string filePath) {
             filePath = filePath.Replace('\\', '/');
