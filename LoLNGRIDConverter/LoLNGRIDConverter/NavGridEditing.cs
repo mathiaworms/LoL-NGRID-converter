@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace LoLNGRIDConverter_Editer
 {
@@ -10,7 +11,96 @@ namespace LoLNGRIDConverter_Editer
     {
         public static void ApplyEdits(List<NavGridCell> cells, int cellCountX, int cellCountZ)
         {
-            // Use SetCellFlagsByRow here as needed.
+          SetCellFlagsByRow(cells, VisionPathingFlags.Wall, VisionPathingFlags.Walkable, cellCountX, cellCountZ, 0, 0, cellCountX, cellCountZ);
+           SetCellFlagsByRow(cells, VisionPathingFlags.TransparentWall, VisionPathingFlags.Walkable, cellCountX, cellCountZ, 0, 0, cellCountX, cellCountZ); 
+          SetCellFlagsByRow(cells, VisionPathingFlags.Brush, VisionPathingFlags.Walkable, cellCountX, cellCountZ, 0, 0, cellCountX, cellCountZ);
+           SetCellFlagsByRow(cells, VisionPathingFlags.AlwaysVisible, VisionPathingFlags.Walkable, cellCountX, cellCountZ, 0, 0, cellCountX, cellCountZ);
+           int counter = 0;  
+           
+             Console.WriteLine("/////////////////////////////////////////////////////////////////////////////////");
+            
+             Console.ReadLine();
+             // Read the file and display it line by line.  
+            foreach (string line in System.IO.File.ReadLines(@"D:\a model 3d\lolngridconverter\LoLNGRIDConverter\LoL-NGRID-converter\LoLNGRIDConverter\LoLNGRIDConverter\AIPath.visionPathing.txt"))
+                {  
+               
+                 string[] numbers = Regex.Split(line, @"\D+");
+               // Console.WriteLine("reussis");
+              //   Console.ReadLine();
+                if (numbers != null)
+                     {
+                foreach (string value in numbers)
+                    {
+                      if (!string.IsNullOrEmpty(value))
+                     {
+                              int i = int.Parse(value);
+                       }
+                    }
+                     }
+               //   string[] numbers = Regex.Split(line, @"\D+");
+                if (numbers != null)
+                     {
+                    string verifflag = numbers[3] + numbers[4] + numbers[5];
+                     Console.WriteLine(verifflag);
+                     
+              /*  
+                if (verifflag == "255255255") {
+                     
+                     SetCellFlagsByRow(cells, VisionPathingFlags.Wall, VisionPathingFlags.Walkable, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                   
+                     SetCellFlagsByRow(cells, VisionPathingFlags.Brush, VisionPathingFlags.Walkable , 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+
+                     }
+                     if(verifflag == "012214") {
+                        Console.WriteLine("reussis");
+                        Console.ReadLine();
+                     SetCellFlagsByRow(cells, VisionPathingFlags.Wall, VisionPathingFlags.Brush, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                     SetCellFlagsByRow(cells, VisionPathingFlags.Walkable, VisionPathingFlags.Brush, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                     }
+                     if(verifflag == "065122") {
+
+                     SetCellFlagsByRow(cells, VisionPathingFlags.Walkable, VisionPathingFlags.Wall, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+
+                     SetCellFlagsByRow(cells, VisionPathingFlags.Brush, VisionPathingFlags.Wall, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                    
+                     }
+                     else {
+                         Console.WriteLine(verifflag);
+                        Console.WriteLine("echec");
+                        Console.WriteLine(verifflag);
+                        Console.ReadLine();
+                    }*/
+                      
+                      
+                      switch(verifflag) 
+                            {
+                            case "255255255":
+                           SetCellFlagsByRow(cells, VisionPathingFlags.Wall, VisionPathingFlags.Walkable, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                   
+                            SetCellFlagsByRow(cells, VisionPathingFlags.Brush, VisionPathingFlags.Walkable , 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                            break;
+                            case "012214":
+                             SetCellFlagsByRow(cells, VisionPathingFlags.Wall, VisionPathingFlags.Brush, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                            SetCellFlagsByRow(cells, VisionPathingFlags.Walkable, VisionPathingFlags.Brush, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                            
+                            break;
+                            case "065122":
+                            SetCellFlagsByRow(cells, VisionPathingFlags.Walkable, VisionPathingFlags.Wall, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+
+                            SetCellFlagsByRow(cells, VisionPathingFlags.Brush, VisionPathingFlags.Wall, 1, 1, Int32.Parse(numbers[1]), Int32.Parse(numbers[2]), 1,1);
+                            break;
+                            default:
+                            Console.WriteLine(verifflag);
+                            Console.WriteLine("echec");
+                            Console.WriteLine(verifflag);
+                            Console.ReadLine();
+                            break;
+                            }
+                 
+              }  
+               counter++;  
+            } 
+        Console.ReadLine(); 
             Console.WriteLine("Applied initial edits.");
         }
         public static void SetCellFlagsByRow(List<NavGridCell> cells, VisionPathingFlags checkFlag, VisionPathingFlags newFlag, int gridwidth, int gridheight, int x, int z, int width, int height)
